@@ -5,6 +5,9 @@ namespace Blogger\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Enquiry;
 use Blogger\BlogBundle\Form\EnquiryType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Knp\Menu\FactoryInterface;
 
 class PageController extends Controller
 {
@@ -25,7 +28,9 @@ class PageController extends Controller
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            //$form->bindRequest($request);
+            //$form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
 
@@ -36,7 +41,7 @@ class PageController extends Controller
                     ->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
                 $this->get('mailer')->send($message);
 
-                $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
+                $this->get('session')->getFlashBag()->set('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
 
                 // Redirect - This is important to prevent users re-posting
                 // the form if they refresh the page
