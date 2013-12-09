@@ -21,7 +21,8 @@
         "mopa/bootstrap-bundle": "dev-master",
         "mopa/bootstrap-sandbox-bundle": "dev-master",
         "twbs/bootstrap": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "dev-master"
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/data-fixtures" : "dev-master"
     },
     "require-dev": {
         "incenteev/composer-parameter-handler": "~2.0"
