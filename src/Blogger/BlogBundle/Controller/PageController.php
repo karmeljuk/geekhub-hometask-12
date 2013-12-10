@@ -13,7 +13,19 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BloggerBlogBundle:Page:index.html.twig');
+        $em = $this->getDoctrine()
+            ->getManager();
+
+        $blogs = $em->createQueryBuilder()
+            ->select('b')
+            ->from('BloggerBlogBundle:Blog',  'b')
+            ->addOrderBy('b.created', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
+            'blogs' => $blogs
+        ));
     }
 
     public function aboutAction()
@@ -28,8 +40,6 @@ class PageController extends Controller
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-            //$form->bindRequest($request);
-            //$form->bind($request);
             $form->handleRequest($request);
 
             if ($form->isValid()) {
