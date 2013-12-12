@@ -7,7 +7,6 @@ use Blogger\BlogBundle\Entity\Enquiry;
 use Blogger\BlogBundle\Form\EnquiryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Knp\Menu\FactoryInterface;
 
 class PageController extends Controller
 {
