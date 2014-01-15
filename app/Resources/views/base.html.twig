@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
-        <title>{% block title %}symblog{% endblock %} - symblog</title>
+        <title>{% block title %}SYmple Blog{% endblock %} - On Symfony</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -17,32 +17,51 @@
 
         <section id="wrapper">
             <header id="header">
-                <div class="top">
-                    {% block navigation %}
-                        <nav>
-                            <ul id="menu" class="menu navigation">
-                                <li>
-                                    <a href="{{ path('BloggerBlogBundle_homepage') }}">
-                                        <span class="ca-icon">A</span>
-                                        <div class="ca-content">
-                                            <h2 class="ca-main">Home</h2>
-                                            <h3 class="ca-sub">Personalized to your needs</h3>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li><a href="{{ path('BloggerBlogBundle_about') }}">About</a></li>
-                                <li><a href="{{ path('BloggerBlogBundle_contact') }}">Contact</a></li>
-                            </ul>
-                        </nav>
-                    {% endblock %}
-                </div>
 
                 <hgroup>
                     <h2>{% block blog_title %}<a href="{{ path('BloggerBlogBundle_homepage') }}">prosto blog</a>{% endblock %}</h2>
                     <h3>{% block blog_tagline %}<a href="{{ path('BloggerBlogBundle_homepage') }}">just a simple blog in Symfony2 </a>{% endblock %}</h3>
                 </hgroup>
-            </header>
 
+                <div class="top">
+                    {% block navigation %}
+                        <nav>
+                            <ul id="menu" class="menu navigation ca-menu">
+                              <li>
+                                  <a href="{{ path('BloggerBlogBundle_homepage') }}">
+                                      <span class="ca-icon">A</span>
+                                      <div class="ca-content">
+                                          <h2 class="ca-main">Home</h2>
+                                          <h3 class="ca-sub">Personalized to your needs</h3>
+                                      </div>
+                                  </a>
+                              </li>
+                              <li>
+                                <a href="{{ path('BloggerBlogBundle_about') }}">
+                                    <span class="ca-icon">I</span>
+                                    <div class="ca-content">
+                                        <h2 class="ca-main">About</h2>
+                                        <h3 class="ca-sub">Personalized to your needs</h3>
+                                    </div>
+                                </a>
+                              </li>
+                              <li>
+                                <a href="{{ path('BloggerBlogBundle_contact') }}">
+                                    <span class="ca-icon">C</span>
+                                    <div class="ca-content">
+                                        <h2 class="ca-main">Contact</h2>
+                                        <h3 class="ca-sub">Personalized to your needs</h3>
+                                    </div>
+                                </a>
+                              </li>
+                            </ul>
+                        </nav>
+                    {% endblock %}
+                </div>
+
+
+            </header>
+            <div class="clr"></div>
             <div id="container" class="container">
                 <div class="main content">
                     <section class="main-col">
@@ -62,7 +81,7 @@
         </section>
 
         {% block javascripts %}
-            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
             <script type="text/javascript">
                 $(function() {
