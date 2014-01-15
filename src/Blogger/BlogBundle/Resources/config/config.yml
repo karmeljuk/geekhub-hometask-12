@@ -1,6 +1,6 @@
 parameters:
     # Blogger contact email address
-    blogger_blog.emails.contact_email: admin@symblog.co.uk
+    blogger_blog.emails.contact_email: karmeljuk@gmail.com
 
 
     # Blogger max latest comments

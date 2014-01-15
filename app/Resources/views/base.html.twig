@@ -20,7 +20,7 @@
                 <div class="top">
                     {% block navigation %}
                         <nav>
-                            <ul class="navigation">
+                            <ul id="menu" class="menu navigation">
                                 <li><a href="{{ path('BloggerBlogBundle_homepage') }}">Home</a></li>
                                 <li><a href="{{ path('BloggerBlogBundle_about') }}">About</a></li>
                                 <li><a href="{{ path('BloggerBlogBundle_contact') }}">Contact</a></li>
@@ -34,23 +34,147 @@
                     <h3>{% block blog_tagline %}<a href="{{ path('BloggerBlogBundle_homepage') }}">just a simple blog in Symfony2 </a>{% endblock %}</h3>
                 </hgroup>
             </header>
-            <div class="main">
-                <section class="main-col">
-                    {% block body %}{% endblock %}
-                </section>
-                <aside class="sidebar">
-                    {% block sidebar %}{% endblock %}
-                </aside>
-            </div>
-            <div id="footer">
-                {% block footer %}
-                    <p>Copyright © 2014 by Sergiy Odarych. All rights reserved. </p>
-                    <p>Symfony2 Symple BLog - created by <a href="https://github.com/karmeljuk">karmeljuk</a></p>
-                {% endblock %}
+
+            <div id="container" class="container">
+                <div class="main content">
+                    <section class="main-col">
+                        {% block body %}{% endblock %}
+                    </section>
+                    <aside class="sidebar">
+                        {% block sidebar %}{% endblock %}
+                    </aside>
+                </div>
+                <div id="footer">
+                    {% block footer %}
+                        <p>Copyright © 2014 by <a href="http://sergiyodarych.livejournal.com/">Sergiy Odarych</a>. All rights reserved. </p>
+                        <p>Symfony2 Symple BLog - created by <a href="https://github.com/karmeljuk">karmeljuk</a></p>
+                    {% endblock %}
+                </div>
             </div>
         </section>
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+            <script type="text/javascript">
+                $(function() {
+                    /*
+                     the menu list element,
+                     the container and content divs
+                     */
+                    var $menu			= $('#menu'),
+                            $container		= $('#container'),
+                            $content		= $container.find('.content');
+
+                    /*
+                     lets add the classes effect, e-fade, and e-color to some elements.
+                     e-fade : this will decrease the opacity of the element
+                     e-color: this will change the color of the element
+                     */
+                    $content
+                            .find('p')
+                            .addClass('effect e-fade')
+                            .end()
+                            .find('h1, h2, h3')
+                            .addClass('effect e-fade e-color');
+
+                    /*
+                     elems is all the elements with class effect.
+                     overlayEffect is our function / module that will take care of the animations
+                     */
+                    var $elems			= $(document).find('.effect'),
+                            OverlayEffect 	= (function(){
+                                //speed for animations
+                                var speed				= 1000,
+                                //the event that triggers the effect
+                                        eventOff			= 'mouseenter',
+                                //the event that stops the effect
+                                        eventOn				= 'mouseleave',
+                                //this is the color that the elements will have after eventOff
+                                        colorOff			= '#AAAAAA',
+                                //saves the original color of each e-color element,
+                                //and calls the methos to initialize the events
+                                        init				= function() {
+                                            $elems.each(function(){
+                                                var $el		= $(this);
+                                                if($el.hasClass('e-color'))
+                                                    $el.data('original-color',$el.css('color'));
+                                            });
+                                            initEventsHandler();
+                                        },
+                                //initializes the events eventOff / eventOn
+                                        initEventsHandler 	= function() {
+                                            $menu
+                                                    .delegate('a',eventOff,function(e){
+                                                        //relation is the id of the element,
+                                                        //and the class of related elements
+                                                        var relation	= $(this).attr('id');
+                                                        animateElems('off',relation);
+                                                        return false;
+                                                    })
+                                                    .delegate('a',eventOn,function(e){
+                                                        var relation	= $(this).attr('id');
+                                                        animateElems('on',relation);
+                                                        return false;
+                                                    });
+                                        },
+                                //animates the color and / or opacity
+                                        animateElems		= function(dir,relation) {
+                                            var $e	= $elems;
+
+                                            switch(dir){
+                                                case 'on'	:
+                                                    //if there are elements on the page with class = relation
+                                                    //then these elements will be excluded for the animation
+                                                    if(relation)
+                                                        $e	= $elems.not('.'+relation);
+
+                                                    $e.each(function(){
+                                                        var $el		= $(this),
+                                                                color	= $el.data('original-color'),
+                                                                param	= {};
+
+                                                        if($el.hasClass('e-color'))
+                                                            param.color		= color;
+                                                        if($el.hasClass('e-fade'))
+                                                            param.opacity	= 1;
+
+                                                        $el.stop().animate(param,speed);
+                                                    });
+
+                                                    break;
+                                                case 'off'	:
+                                                    if(relation)
+                                                        $e	= $elems.not('.'+relation);
+
+                                                    $e.each(function(){
+                                                        var $el		= $(this),
+                                                                param	= {};
+
+                                                        if($el.hasClass('e-color'))
+                                                            param.color		= colorOff;
+                                                        if($el.hasClass('e-fade'))
+                                                            param.opacity	= 0.1;
+
+                                                        $el.stop().animate(param,speed);
+                                                    });
+
+                                                    break;
+                                            }
+                                        };
+
+                                return {
+                                    init				: init
+                                };
+                            })();
+
+                    /*
+                     call the init method of OverlayEffect
+                     */
+                    OverlayEffect.init();
+                });
+            </script>
+        {% endblock %}
     </body>
 </html>
 
