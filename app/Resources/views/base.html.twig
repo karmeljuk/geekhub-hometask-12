@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block title %}SYmple Blog{% endblock %} - On Symfony</title>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        {% block stylesheets %}
+            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+            <link href="{{ asset('css/screen.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        <section id="wrapper">
+            <header id="header">
+
+                <hgroup>
+                    <h2>{% block blog_title %}<a href="{{ path('BloggerBlogBundle_homepage') }}">prosto blog</a>{% endblock %}</h2>
+                    <h3>{% block blog_tagline %}<a href="{{ path('BloggerBlogBundle_homepage') }}">just a simple blog in Symfony2 </a>{% endblock %}</h3>
+                </hgroup>
+
+                <div class="top">
+                    {% block navigation %}
+                        <nav>
+                            <ul id="menu" class="menu navigation ca-menu">
+                              <li>
+                                  <a href="{{ path('BloggerBlogBundle_homepage') }}">
+                                      <span class="ca-icon">A</span>
+                                      <div class="ca-content">
+                                          <h2 class="ca-main">Home</h2>
+                                          <h3 class="ca-sub">Personalized to your needs</h3>
+                                      </div>
+                                  </a>
+                              </li>
+                              <li>
+                                <a href="{{ path('BloggerBlogBundle_about') }}">
+                                    <span class="ca-icon">I</span>
+                                    <div class="ca-content">
+                                        <h2 class="ca-main">About</h2>
+                                        <h3 class="ca-sub">Personalized to your needs</h3>
+                                    </div>
+                                </a>
+                              </li>
+                              <li>
+                                <a href="{{ path('BloggerBlogBundle_contact') }}">
+                                    <span class="ca-icon">C</span>
+                                    <div class="ca-content">
+                                        <h2 class="ca-main">Contact</h2>
+                                        <h3 class="ca-sub">Personalized to your needs</h3>
+                                    </div>
+                                </a>
+                              </li>
+                            </ul>
+                        </nav>
+                    {% endblock %}
+                </div>
+
+
+            </header>
+            <div class="clr"></div>
+            <div id="container" class="container">
+            <div class="content">
+              <section>
+                  <div class="main">
+                      <div class="main-col">
+                          {% block body %}{% endblock %}
+                          {% block pagination %}
+                            <nav class="pagination">
+                              <ul>
+                                <li><a class="selected" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">6</a></li>
+                              </ul>
+                            </nav>
+                          {% endblock %}
+                      </div>
+                      <aside class="sidebar">
+                          {% block sidebar %}{% endblock %}
+                      </aside>
+                  </div>
+                  <div id="footer">
+                      {% block footer %}
+                          <p>Copyright © 2014 by <a href="http://sergiyodarych.livejournal.com/">Sergiy Odarych</a>. All rights reserved. </p>
+                          <p>Symfony2 Symple BLog - created by <a href="https://github.com/karmeljuk">karmeljuk</a></p>
+                      {% endblock %}
+                  </div>
+              </section>
+            </div>
+
+        {% block javascripts %}
+
+          <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+          <script type="text/javascript">
+                $(function() {
+                /*
+                the menu list element,
+                the container and content divs
+                */
+                var $menu     = $('#menu'),
+                  $container    = $('#container'),
+                  $content    = $container.find('.content');
+
+                /*
+                lets add the classes effect, e-fade, and e-color to some elements.
+                e-fade : this will decrease the opacity of the element
+                e-color: this will change the color of the element
+                */
+                $content
+                .find('section')
+                .addClass('effect e-fade')
+                .end()
+                .find('h1, h2, h3')
+                .addClass('effect e-fade e-color');
+
+                /*
+                elems is all the elements with class effect.
+                overlayEffect is our function / module that will take care of the animations
+                */
+                var $elems      = $(document).find('.effect'),
+                  OverlayEffect   = (function(){
+                      //speed for animations
+                    var speed       = 1000,
+                      //the event that triggers the effect
+                      eventOff      = 'mouseenter',
+                      //the event that stops the effect
+                      eventOn       = 'mouseleave',
+                      //this is the color that the elements will have after eventOff
+                      colorOff      = '#AAAAAA',
+                      //saves the original color of each e-color element,
+                      //and calls the methos to initialize the events
+                      init        = function() {
+                        $elems.each(function(){
+                          var $el   = $(this);
+                          if($el.hasClass('e-color'))
+                            $el.data('original-color',$el.css('color'));
+                        });
+                        initEventsHandler();
+                      },
+                      //initializes the events eventOff / eventOn
+                      initEventsHandler   = function() {
+                        $menu
+                        .delegate('a',eventOff,function(e){
+                          //relation is the id of the element,
+                          //and the class of related elements
+                          var relation  = $(this).attr('id');
+                          animateElems('off',relation);
+                          return false;
+                        })
+                        .delegate('a',eventOn,function(e){
+                          var relation  = $(this).attr('id');
+                          animateElems('on',relation);
+                          return false;
+                        });
+                      },
+                      //animates the color and / or opacity
+                      animateElems    = function(dir,relation) {
+                        var $e  = $elems;
+
+                        switch(dir){
+                          case 'on' :
+                            //if there are elements on the page with class = relation
+                            //then these elements will be excluded for the animation
+                            if(relation)
+                              $e  = $elems.not('.'+relation);
+
+                            $e.each(function(){
+                              var $el   = $(this),
+                                color = $el.data('original-color'),
+                                param = {};
+
+                              if($el.hasClass('e-color'))
+                                param.color   = color;
+                              if($el.hasClass('e-fade'))
+                                param.opacity = 1;
+
+                              $el.stop().animate(param,speed);
+                            });
+
+                            break;
+                          case 'off'  :
+                            if(relation)
+                              $e  = $elems.not('.'+relation);
+
+                            $e.each(function(){
+                              var $el   = $(this),
+                                param = {};
+
+                              if($el.hasClass('e-color'))
+                                param.color   = colorOff;
+                              if($el.hasClass('e-fade'))
+                                param.opacity = 0.1;
+
+                              $el.stop().animate(param,speed);
+                            });
+
+                            break;
+                        }
+                      };
+
+                    return {
+                      init        : init
+                    };
+                  })();
+
+                /*
+                call the init method of OverlayEffect
+                */
+                OverlayEffect.init();
+                });
+                  </script>
+                  {% endblock %}
+    </body>
+</html>
+

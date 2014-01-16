@@ -1,0 +1,102 @@
+{#
+<section class="section">
+    <header>
+        <h3>Tag Cloud</h3>
+    </header>
+    <p class="tags">
+        {% for tag, weight in tags %}
+        <span class="weight-{{ weight }}">{{ tag }}</span>
+        {% else %}
+    <p>There are no tags</p>
+    {% endfor %}
+    </p>
+</section>
+
+<section class="section">
+    <header>
+        <h3>Latest Comments</h3>
+    </header>
+    {% for comment in latestComments %}
+        <article class="comment">
+            <header>
+                <p class="small"><span class="highlight">{{ comment.user }}</span> commented on
+                    <a href="{{ path('BloggerBlogBundle_blog_show', { 'id': comment.blog.id }) }}#comment-{{ comment.id }}">
+                        {{ comment.blog.title }}
+                    </a>
+                    [<em><time datetime="{{ comment.created|date('c') }}">{{ comment.created|date('Y-m-d h:iA') }}</time></em>]
+                </p>
+            </header>
+            <p>{{ comment.comment }}</p>
+            </p>
+        </article>
+    {% else %}
+        <p>There are no recent comments</p>
+    {% endfor %}
+</section>
+#}
+
+
+
+<aside class="six columns">
+
+  <div class="sub search">
+    <header>
+      <h4>Search</h4>
+    </header>
+    <form action="" class="search clearfix">
+      <input type="search" placeholder="eg: Cheese" value="">
+      <button type="submit">Search</button>
+    </form>
+  </div><!-- end sub search -->
+
+  <div class="sub sponsors clearfix">
+    <header>
+      <h4>Sponsors</h4>
+    </header>
+      <a href="#" class="mini"><img src="{{ asset('bundles/bloggerblog/images/banners/cc_260x120_v4.gif') }}" alt=""></a>
+      <a href="#" class="mini"><img src="{{ asset('bundles/bloggerblog/images/banners/pd_260x120_v4.gif') }}" alt=""></a>
+      <a href="#" class="mini"><img src="{{ asset('bundles/bloggerblog/images/banners/tf_260x120_v2.gif') }}" alt=""></a>
+      <a href="#" class="mini"><img src="{{ asset('bundles/bloggerblog/images/banners/vh_260x120_v1.gif') }}" alt=""></a>
+
+      <a href="#" class="maxi"><img src="{{ asset('bundles/bloggerblog/images/banners/tf_300x250_v1.gif') }}" alt=""></a>
+      <a href="#" class="maxi"><img src="{{ asset('bundles/bloggerblog/images/banners/gr_300x250_v3.gif') }}" alt=""></a>
+  </div><!-- end sub sponsors -->
+
+  <div class="sub news">
+    <header>
+      <h4>Blog news</h4>
+    </header>
+
+    <form action="" class="subscribe clearfix">
+      <input type="email" placeholder="you@doamin" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div><!-- end sub news -->
+
+  <div class="sub video">
+    <header>
+      <h4>Video of the week</h4>
+    </header>
+    <figure>
+    <div class="emded">
+      <iframe src="//player.vimeo.com/video/71501596?portrait=0" width="340" height="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div><!-- emded -->
+      <figcaption>
+        <a href="http://vimeo.com/71501596">NIGHTVISION</a> from <a href="http://vimeo.com/lukeshep">Luke Shepard</a> on <a href="https://vimeo.com">Vimeo</a>
+      </figcaption>
+    </figure>
+  </div><!-- end sub video -->
+
+  <div class="columns sub">
+    <header>
+      <h4>Flickr</h4>
+    </header>
+    <div class="flickr"></div>
+  </div><!-- end four -->
+
+{#<div class="sub">
+  <h4>Search</h4>
+  &#123;&#35; cmf_search &#35;&#125;
+</div>#}
+
+</aside><!-- end six -->

@@ -1,8 +1,7 @@
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+blogger_blog:
+    resource: "@BloggerBlogBundle/Resources/config/routing.yml"
+    prefix:   /blogger
 
-_welcome:
-    pattern:   /
-    defaults:  { _controller: MopaBootstrapSandboxBundle:Examples:index }
+geekhub_task8:
+    resource: "@GeekhubTask8Bundle/Resources/config/routing.yml"
+    prefix:   /task8

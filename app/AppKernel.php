@@ -16,10 +16,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new Mopa\Bundle\BootstrapSandboxBundle\MopaBootstrapSandboxBundle(),
-            new Liip\ThemeBundle\LiipThemeBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle()
+            new Geekhub\Task8Bundle\GeekhubTask8Bundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Blogger\BlogBundle\BloggerBlogBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

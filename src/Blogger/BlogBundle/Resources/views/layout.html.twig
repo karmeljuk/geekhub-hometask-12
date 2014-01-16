@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/bloggerblog/css/blog.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/bloggerblog/css/skeleton.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/bloggerblog/css/layout.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/bloggerblog/css/base.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/jquery.flickrush.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/jquery.flexslider.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/whatever.js') }}"></script>
+{% endblock %}
+
+{% block sidebar %}
+    {# include 'BloggerBlogBundle:Page:sidebar.html.twig' with {"tags": tagWeights} #}
+    {% include 'BloggerBlogBundle:Page:sidebar.html.twig' %}
+{% endblock %}
