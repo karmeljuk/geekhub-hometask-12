@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Geekhub\Task8Bundle\GeekhubTask8Bundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Blogger\BlogBundle\BloggerBlogBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
