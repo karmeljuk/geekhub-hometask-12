@@ -36,3 +36,6 @@ BloggerBlogBundle_comment_create:
     requirements:
         _method:  POST
         blog_id: \d+
+
+cmf_search:
+    resource: "@CmfSearchBundle/Resources/config/routing/phpcr/search.xml"

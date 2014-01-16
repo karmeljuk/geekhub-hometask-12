@@ -21,7 +21,8 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures" : "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/migrations": "dev-master"
+        "doctrine/migrations": "dev-master",
+        "symfony-cmf/search-bundle": "1.0.*@dev"
     },
     "require-dev": {
         "incenteev/composer-parameter-handler": "~2.0"

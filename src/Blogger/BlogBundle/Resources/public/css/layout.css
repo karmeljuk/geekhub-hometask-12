@@ -325,7 +325,7 @@ html[xmlns] .slides {display: block;}
 hr {
 	border: none;
 	border-bottom: 1px dashed #e5e5e5;
-	margin: 14px 0px 28px;
+	margin: 14px 0 28px;
 }
 
 article .breadcrumbs {
@@ -337,6 +337,14 @@ article .meta {
 }
 
 /* pagination */
+.index-page + nav.pagination {
+  display: block;
+}
+
+nav.pagination {
+  display: none;
+}
+
 nav.pagination ul {
 	width: 100%;
 	text-align: center;

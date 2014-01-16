@@ -1,6 +1,7 @@
 {% extends 'BloggerBlogBundle::layout.html.twig' %}
 
 {% block body %}
+  <div class="index-page">
     {% for blog in blogs %}
         <article class="blog">
             <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
@@ -23,4 +24,5 @@
     {% else %}
         <p>There are no blog entries for symblog</p>
     {% endfor %}
+  </div>
 {% endblock %}
