@@ -17,7 +17,7 @@ form.blogger ul li { color: #ff0000; margin-bottom: 5px; }
 .blog .meta p { margin-bottom: 5px; line-height: 1.2em; }
 .blog img.large { width: 300px; min-height: 165px; }
 .comments { clear: both; }
-.comments .odd { background: #363636; }
+.comments .odd { background: rgba(54,54,54,0.5); }
 .comments .comment { padding: 20px; }
 .comments .comment p { margin-bottom: 0; }
 .comments h3 { padding: 10px; font-size: 20px; margin-bottom: 20px; clear: both; }
