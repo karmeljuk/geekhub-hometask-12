@@ -10,10 +10,10 @@
 {% endblock %}
 
 {% block javascripts %}
-  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/tabs.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/jquery.tweet.js') }}"></script>
+  {{ parent() }}
   <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/jquery.flickrush.js') }}"></script>
   <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/jquery.flexslider.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/bloggerblog/js/whatever.js') }}"></script>
 {% endblock %}
 
 {% block sidebar %}

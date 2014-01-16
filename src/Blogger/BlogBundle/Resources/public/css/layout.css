@@ -16,15 +16,6 @@
 
 /* #Site Styles
 ================================================== */
-@font-face{
-	font-family: 'WebSymbolsRegular';
-		src: url('../fonts/websymbols/websymbols-regular-webfont.eot');
-		src: url('../fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-			url('../fonts/websymbols/websymbols-regular-webfont.woff') format('woff'),
-			url('../fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'),
-			url('../fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
-}
-
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
