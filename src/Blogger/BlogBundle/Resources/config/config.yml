@@ -5,3 +5,5 @@ parameters:
 
     # Blogger max latest comments
     blogger_blog.comments.latest_comment_limit: 10
+
+    white_october_pagerfanta: default_view: my_view_1
