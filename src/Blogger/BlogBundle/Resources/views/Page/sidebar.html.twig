@@ -99,8 +99,7 @@
     <h4>Nav</h4>
   </header>
   <div class="pagerfanta">
-      {{ pagerfanta(pagerfanta, 'my_view_1') }}
-{{ pagerfanta(pagerfanta, 'my_view_2') }}
+      {{ pagerfanta(post_manager.getPosts, 'my_view_1') }}
 
     </div>
 </div>

@@ -29,6 +29,9 @@ twig:
     form:
         resources:
 
+    globals:
+            post_manager: "@blogger.post_manager"
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
@@ -78,3 +81,6 @@ white_october_pagerfanta:
     exceptions_strategy:
         out_of_range_page:        to_http_not_found
         not_valid_current_page:   to_http_not_found
+
+
+

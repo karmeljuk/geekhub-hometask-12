@@ -85,4 +85,10 @@ class PageController extends Controller
             'tags'              => $tagWeights
         ));
     }
+
+    public function getPosts()
+    {
+         $pagerfanta = new Pagerfanta ;
+          return $posts;
+    }
 }

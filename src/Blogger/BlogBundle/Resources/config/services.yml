@@ -4,20 +4,13 @@ services:
         tags:
             - { name: twig.extension }
 
-    pagerfanta.view.my_view_1:
+    blogger.post_manager:
         class: Pagerfanta\View\OptionableView
         arguments:
             - @pagerfanta.view.default
             - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
         public: false
         tags: [{ name: pagerfanta.view, alias: my_view_1 }]
-    pagerfanta.view.my_view_2:
-        class: Pagerfanta\View\OptionableView
-        arguments:
-            - @pagerfanta.view.default
-            - { proximity: 5 }
-        public: false
-        tags: [{ name: pagerfanta.view, alias: my_view_2 }]
 
 
 
