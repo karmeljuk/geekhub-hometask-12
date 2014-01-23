@@ -19,6 +19,8 @@ web/js/*
 *.swp
 *.out
 
+!/composer.lock
+
 ## IDE files to ignore
 bootstrap.sublime-workspace
 nbproject/

@@ -118,6 +118,34 @@ class CommentFixtures extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($comment);
 
         $manager->flush();
+
+        for ($i = 6; $i <= 100; $i++) {
+            $comment = new Comment();
+            $comment->setUser('Stanley');
+            $comment->setComment('It\'s not gonna end like this.');
+            $comment->setBlog($manager->merge($this->getReference('blog-'.$i)));
+            $manager->persist($comment);
+
+            $comment = new Comment();
+            $comment->setUser('Gabriel');
+            $comment->setComment('Oh, come on, Stan. Not everything ends the way you think it should. Besides, audiences love happy endings.');
+            $comment->setBlog($manager->merge($this->getReference('blog-'.$i)));
+            $manager->persist($comment);
+
+            $comment = new Comment();
+            $comment->setUser('Mile');
+            $comment->setComment('Doesn\'t Bill Gates have something like that?');
+            $comment->setBlog($manager->merge($this->getReference('blog-'.$i)));
+            $manager->persist($comment);
+
+            $comment = new Comment();
+            $comment->setUser('Gary');
+            $comment->setComment('Bill Who?');
+            $comment->setBlog($manager->merge($this->getReference('blog-'.$i)));
+            $manager->persist($comment);
+        }
+
+        $manager->flush();
     }
 
     public function getOrder()

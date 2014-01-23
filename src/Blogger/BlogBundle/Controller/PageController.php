@@ -2,24 +2,27 @@
 
 namespace Blogger\BlogBundle\Controller;
 
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Enquiry;
 use Blogger\BlogBundle\Form\EnquiryType;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
     public function indexAction()
     {
-        $em = $this->getDoctrine()
-                   ->getManager();
-
-        $blogs = $em->getRepository('BloggerBlogBundle:Blog')
-            ->getLatestBlogs();
+        $page = $this->getRequest()->query->get('page', 1);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsQuery();
+        $blogs = new Pagerfanta(new DoctrineORMAdapter($query));
+        $blogs
+            ->setMaxPerPage(10)
+            ->setCurrentPage($page)
+        ;
 
         return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
-            'blogs' => $blogs
+            'blogs' => $blogs,
         ));
     }
 
@@ -69,10 +72,6 @@ class PageController extends Controller
 
         $tagWeights = $em->getRepository('BloggerBlogBundle:Blog')
             ->getTagWeights($tags);
-
-        return $this->render('BloggerBlogBundle:Page:sidebar.html.twig', array(
-            'tags' => $tagWeights
-        ));
 
 
         $commentLimit   = $this->container
