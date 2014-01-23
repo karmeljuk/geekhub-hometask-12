@@ -24,5 +24,9 @@
     {% else %}
         <p>There are no blog entries for symblog</p>
     {% endfor %}
+
+    {% if blogs.haveToPaginate %}
+      <div>{{ pagerfanta(blogs) }}</div>
+    {% endif %}
   </div>
 {% endblock %}
