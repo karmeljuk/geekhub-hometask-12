@@ -69,7 +69,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('blog-4', $blog4);
         $this->addReference('blog-5', $blog5);
 
-        for ($i = 6; $i <= 100; $i++) {
+        for ($i = 6; $i <= 33; $i++) {
             $blogN = new Blog();
             $blogN->setTitle('You\'re either a one or a zero. Alive or dead');
             $blogN->setBlog('Lorem ipsum dolor sit amet, consectetur adipiscing elittibulum vulputate mauris eget erat congue dapibus imperdiet justo scelerisque.');
