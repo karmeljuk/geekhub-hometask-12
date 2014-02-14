@@ -5,3 +5,6 @@ blogger_blog:
 geekhub_task8:
     resource: "@GeekhubTask8Bundle/Resources/config/routing.yml"
     prefix:   /task8
+
+_user_bundle:
+    resource: "@BloggerUserBundle/Resources/config/routing.yml"
