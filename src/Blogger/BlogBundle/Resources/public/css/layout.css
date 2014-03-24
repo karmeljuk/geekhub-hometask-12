@@ -337,28 +337,25 @@ article .meta {
 }
 
 /* pagination */
-.index-page + nav.pagination {
+/* .index-page + nav.pagination {
   display: block;
-}
+} */
 
-nav.pagination {
-  display: none;
-}
-
-nav.pagination ul {
+.pagerfanta nav {
 	width: 100%;
 	text-align: center;
-	margin: 21px 0px 35px;
+	margin: 21px 0 35px;
 }
 
-nav.pagination li {
+.pagerfanta nav span, .pagerfanta nav a {
 	display: inline;
+  margin: 0 2px 0 2px;
+  line-height: 35px;
+  width: 35px;
+  display: inline-block;
 }
 
-nav.pagination li a {
-	display: inline-block;
-	line-height: 35px;
-	width: 35px;
+.pagerfanta nav a {
 	height: 35px;
 	text-align: center;
 	padding: 0px 7px;
@@ -367,11 +364,19 @@ nav.pagination li a {
 	border-bottom: 3px solid #ccc;
 }
 
-nav.pagination li a.selected,
-nav.pagination li a:hover {
+
+.pagerfanta nav a.selected,
+.pagerfanta nav a:hover {
 	background: url(../images/bg_dark.png) #000 0 0 no-repeat;
 	border: none;
 	color: #fff;
+}
+
+.pagerfanta nav a:last-child, .pagerfanta nav a:first-child {
+  background: none;
+  color: #fff;
+  width: auto;
+  border: none;
 }
 
 /* sidebar */
